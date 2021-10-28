@@ -1,0 +1,73 @@
+﻿<Window x:Class="Game2048.Views.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Game2048.ViewModels"
+        xmlns:comp="clr-namespace:Game2048.Views.Components"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        x:Name="MainWindow"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        Background="{StaticResource Bg1Color}"
+        DataContext="{StaticResource Game}"
+        Title="2048">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding MoveLeftCommand}" Key="Left"/>
+        <KeyBinding Command="{Binding MoveRightCommand}" Key="Right"/>
+        <KeyBinding Command="{Binding MoveUpCommand}" Key="Up"/>
+        <KeyBinding Command="{Binding MoveDownCommand}" Key="Down"/>
+    </Window.InputBindings>
+    <Grid Margin="20" 
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top">
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <comp:Scoreboard Grid.Column="0" DataContext="{Binding Path=Score}" />
+            <comp:Scoreboard Grid.Column="1" DataContext="{Binding Path=HighScore}"/>
+        </Grid>
+        <Border Grid.Row="1" CornerRadius="5" Width="auto" Margin="5"
+                Background="{StaticResource Bg2Color}">
+            <Grid Margin="5" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <comp:Tile Grid.Row="0" Grid.Column="0" DataContext="{Binding Path=Tile00}" />
+                <comp:Tile Grid.Row="0" Grid.Column="1" DataContext="{Binding Path=Tile01}"/>
+                <comp:Tile Grid.Row="0" Grid.Column="2" DataContext="{Binding Path=Tile02}"/>
+                <comp:Tile Grid.Row="0" Grid.Column="3" DataContext="{Binding Path=Tile03}"/>
+                <comp:Tile Grid.Row="1" Grid.Column="0" DataContext="{Binding Path=Tile10}"/>
+                <comp:Tile Grid.Row="1" Grid.Column="1" DataContext="{Binding Path=Tile11}"/>
+                <comp:Tile Grid.Row="1" Grid.Column="2" DataContext="{Binding Path=Tile12}"/>
+                <comp:Tile Grid.Row="1" Grid.Column="3" DataContext="{Binding Path=Tile13}"/>
+                <comp:Tile Grid.Row="2" Grid.Column="0" DataContext="{Binding Path=Tile20}"/>
+                <comp:Tile Grid.Row="2" Grid.Column="1" DataContext="{Binding Path=Tile21}"/>
+                <comp:Tile Grid.Row="2" Grid.Column="2" DataContext="{Binding Path=Tile22}"/>
+                <comp:Tile Grid.Row="2" Grid.Column="3" DataContext="{Binding Path=Tile23}"/>
+                <comp:Tile Grid.Row="3" Grid.Column="0" DataContext="{Binding Path=Tile30}"/>
+                <comp:Tile Grid.Row="3" Grid.Column="1" DataContext="{Binding Path=Tile31}"/>
+                <comp:Tile Grid.Row="3" Grid.Column="2" DataContext="{Binding Path=Tile32}"/>
+                <comp:Tile Grid.Row="3" Grid.Column="3" DataContext="{Binding Path=Tile33}"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

@@ -1,0 +1,65 @@
+﻿<Window x:Class="Game2048.Views.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Game2048.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource WindowStyle}"
+        DataContext="{StaticResource Auth}"
+        ResizeMode="NoResize">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding LogInCommand}" Key="Return"/>
+    </Window.InputBindings>
+    <Border FocusManager.FocusedElement="{Binding ElementName=loginTB}" >
+        <Grid Margin="10,15,10,5" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Text="User name: " Padding="10"/>
+            <TextBlock Grid.Row="2" Text="PassWord: " Padding="10"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Login}"
+                     Style="{StaticResource CustomTextBox}" x:Name="loginTB"
+                    />
+            <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="PassBox"
+                         Style="{StaticResource CustomPasswordBox}"/>
+            <CheckBox Grid.Row="3" Content="remember me"
+                      Grid.Column="1" Margin="5"/>
+
+            <Button Grid.Row="4" Grid.Column="1" Content="Log In"
+                RenderTransformOrigin="0.5,0.5" 
+                Command="{Binding LogInCommand}"
+                Style="{StaticResource LogInBtnStyle}">
+                <Button.RenderTransform >
+                    <RotateTransform x:Name="ButtonRotate"/>
+                </Button.RenderTransform>
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation 
+                                Storyboard.TargetName="ButtonRotate"
+                                Storyboard.TargetProperty="Angle"
+                                 From="20"
+                                Duration="0:0:0.1"
+                               />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+
+        </Grid>
+    </Border>
+   
+</Window>
